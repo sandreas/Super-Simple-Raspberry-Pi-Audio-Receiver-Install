@@ -26,8 +26,8 @@ EOT
 # Add gpu_mem=256 to config.txt for use with Kodi
 echo gpu_mem=256 >> /boot/config.txt
 # Faster Boot
-tst cp boot/cmdline.txt /boot/cmdline.txt
-tst touch /home/pi/.hushlogin
+#tst cp boot/cmdline.txt /boot/cmdline.txt
+#tst touch /home/pi/.hushlogin
 
 
 exit 0

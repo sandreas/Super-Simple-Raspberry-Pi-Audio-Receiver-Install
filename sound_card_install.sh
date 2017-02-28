@@ -5,25 +5,25 @@
 sudo cat <<EOT >> /etc/modprobe.d/alsa-base.conf
 options snd_bcm2835 index=0
 EOT
-sudo cat <<EOT >> /etc/asound.conf
-pcm.pulse {
-    type pulse
-    card 1
-}
-ctl.pulse {
-    type pulse
-    card 1
-}
+#sudo cat <<EOT >> /etc/asound.conf
+#pcm.pulse {
+#    type pulse
+#    card 1
+#}
+#ctl.pulse {
+#    type pulse
+#    card 1
+#
 
-pcm.!default {
-    type hw
-    card 1
-}
-ctl.!default {
-    type hw
-    card 1
-}
-EOT
+#pcm.!default {
+#    type hw
+#    card 1
+#}
+#ctl.!default {
+#    type hw
+#    card 1
+#}
+#EOT
 sudo cat <<EOT >>/boot/config.txt
 # Enable HiFiberry Amp
 #dtoverlay=hifiberry-amp

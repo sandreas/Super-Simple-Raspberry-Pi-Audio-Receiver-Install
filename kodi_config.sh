@@ -26,7 +26,7 @@ EOT
 # Add gpu_mem=256 to config.txt for use with Kodi
 echo gpu_mem=256 >> /boot/config.txt
 # Faster Boot
-tst cp boot/cmdline.txt /boot/cmdline.txt
+#tst cp boot/cmdline.txt /boot/cmdline.txt # Uncomment if not running on a NOOBS Install
 touch ~/.hushlogin
 
 

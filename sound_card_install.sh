@@ -10,6 +10,8 @@ options snd_bcm2835 index=0
 EOT
 sudo cat <<EOT >> /etc/asound.conf
 pcm.pulse {
+    format S16_LE
+    rate 48000
     type pulse
     card 0
 }
@@ -19,6 +21,8 @@ ctl.pulse {
 }
 
 pcm.!default {
+    format S16_LE
+    rate 48000
     type hw
     card 0
 }
@@ -67,6 +71,9 @@ options snd_bcm2835 index=0
 EOT
 sudo cat <<EOT >> /etc/asound.conf
 pcm.pulse {
+    format S16_LE
+    rate 48000
+    
     type pulse
     card 1
 }
@@ -76,6 +83,8 @@ ctl.pulse {
 }
 
 pcm.!default {
+    format S16_LE
+    rate 48000
     type hw
     card 1
 }

@@ -42,8 +42,9 @@ tst sudo cp init.d/pulseaudio /etc/init.d
 tst sudo chmod +x /etc/init.d/pulseaudio
 tst sudo update-rc.d pulseaudio defaults
 
-tst sudo cp init.d/bluetooth /etc/init.d
-tst sudo chmod +x /etc/init.d/bluetooth
+# andreas: TODO compare existing
+#tst sudo cp init.d/bluetooth /etc/init.d
+#tst sudo chmod +x /etc/init.d/bluetooth
 tst sudo update-rc.d bluetooth defaults
 
 tst sudo cp init.d/bluetooth-agent /etc/init.d
@@ -60,18 +61,19 @@ tst sudo cp usr/local/bin/say.sh /usr/local/bin
 tst sudo chmod 755 /usr/local/bin/say.sh
 
 tst sudo cp usr/local/bin/bluezutils.py /usr/local/bin
+# andreas: TODO configure manually
+#tst sudo cp etc/pulse/daemon.conf /etc/pulse
 
-tst sudo cp etc/pulse/daemon.conf /etc/pulse
-
-sudo patch /boot/config.txt << EOT
-@@ -54,3 +54,6 @@
- 
- # Enable audio (loads snd_bcm2835)
- dtparam=audio=on
-+
-+# High Quality audio patch
-+audio_pwm_mode=2
-EOT
+# andreas: TODO: patch config manually due to other audio device (phat dac)
+#sudo patch /boot/config.txt << EOT
+#@@ -54,3 +54,6 @@
+# 
+# # Enable audio (loads snd_bcm2835)
+# dtparam=audio=on
+#+
+#+# High Quality audio patch
+#+audio_pwm_mode=2
+#EOT
 
 if [ -f /etc/udev/rules.d/99-com.rules ]; then
 
@@ -141,25 +143,25 @@ sudo patch /etc/pulse/system.pa << EOT
 + .endif
 EOT
 
-
-#sudo service bluetooth start &
-#sudo service pulseaudio start &
-#sudo service bluetooth-agent start &
-# BT FIX
-mkdir /etc/pulsebackup
-cp /etc/pulse/* /etc/pulsebackup/
-git clone --branch v6.0 https://github.com/pulseaudio/pulseaudio
-apt-get install intltool
-apt-get install libsndfile-dev
-apt-get install libcap-dev
-apt-get install libjson0-dev
-cd pulseaudio
-./bootstrap.sh
-make
-make install
-ldconfig
-cp /etc/pulsebackup/* /etc/pulse
-
-sleep 5
+# andreas: removed non working fix, is this really needed?
+##sudo service bluetooth start &
+##sudo service pulseaudio start &
+##sudo service bluetooth-agent start &
+## BT FIX
+#mkdir /etc/pulsebackup
+#cp /etc/pulse/* /etc/pulsebackup/
+#git clone --branch v6.0 https://github.com/pulseaudio/pulseaudio
+#apt-get install intltool
+#apt-get install libsndfile-dev
+#apt-get install libcap-dev
+#apt-get install libjson0-dev
+#cd pulseaudio
+#./bootstrap.sh
+#make
+#make install
+#ldconfig
+#cp /etc/pulsebackup/* /etc/pulse
+#
+#sleep 5
 
 echo "Done! You should reboot now"

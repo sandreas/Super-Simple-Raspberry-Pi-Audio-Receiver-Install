@@ -1,0 +1,118 @@
+
+Starting @ Sun 22 Oct 09:38:43 UTC 2017
+--------------------------------------------
+===> Executing: ./bt_pa_prep.sh
+Hit:1 http://mirrordirector.raspbian.org/raspbian stretch InRelease
+Hit:2 http://archive.raspberrypi.org/debian stretch InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Done! You should reboot now
+--------------------------------------------
+===> Executing: ./bt_pa_install.sh
+===> Executing: apt-get install bluez pulseaudio pulseaudio-module-bluetooth -y
+Reading package lists...
+Building dependency tree...
+Reading state information...
+pulseaudio is already the newest version (10.0-1+deb9u1).
+pulseaudio-module-bluetooth is already the newest version (10.0-1+deb9u1).
+bluez is already the newest version (5.43-2+rpt1+deb9u1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+===> Executing: apt-get install python-dbus -y
+Reading package lists...
+Building dependency tree...
+Reading state information...
+python-dbus is already the newest version (1.2.4-1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+===> Executing: apt-get install -qy espeak
+Reading package lists...
+Building dependency tree...
+Reading state information...
+espeak is already the newest version (1.48.04+dfsg-5).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+===> Executing: addgroup --system pulse
+===> Executing: adduser --system --ingroup pulse --home /var/run/pulse pulse
+The system user `pulse' already exists. Exiting.
+===> Executing: addgroup --system pulse-access
+===> Executing: adduser pulse audio
+The user `pulse' is already a member of `audio'.
+===> Executing: adduser root pulse-access
+Adding user `root' to group `pulse-access' ...
+Adding user root to group pulse-access
+Done.
+===> Executing: adduser pulse lp
+Adding user `pulse' to group `lp' ...
+Adding user pulse to group lp
+Done.
+Done! You should reboot now
+--------------------------------------------
+===> Executing: ./bt_pa_config.sh
+===> Executing: cp usr/local/bin/volume-watcher.py /usr/local/bin/volume-watcher.py
+===> Executing: chmod +x /usr/local/bin/volume-watcher.py
+===> Executing: cp lib/systemd/system/volume-watcher.service /lib/systemd/system/volume-watcher.service
+===> Executing: systemctl enable volume-watcher
+===> Executing: cd .
+===> Executing: sudo cp /tmp/machine-info /etc
+===> Executing: sudo cp init.d/pulseaudio /etc/init.d
+===> Executing: sudo chmod +x /etc/init.d/pulseaudio
+===> Executing: sudo update-rc.d pulseaudio defaults
+===> Executing: sudo update-rc.d bluetooth defaults
+===> Executing: sudo cp init.d/bluetooth-agent /etc/init.d
+===> Executing: sudo chmod +x /etc/init.d/bluetooth-agent
+===> Executing: sudo update-rc.d bluetooth-agent defaults
+===> Executing: sudo cp usr/local/bin/bluez-udev /usr/local/bin
+===> Executing: sudo chmod 755 /usr/local/bin/bluez-udev
+===> Executing: sudo cp usr/local/bin/simple-agent.autotrust /usr/local/bin
+===> Executing: sudo chmod 755 /usr/local/bin/simple-agent.autotrust
+===> Executing: sudo cp usr/local/bin/say.sh /usr/local/bin
+===> Executing: sudo chmod 755 /usr/local/bin/say.sh
+===> Executing: sudo cp usr/local/bin/bluezutils.py /usr/local/bin
+patching file /etc/udev/rules.d/99-com.rules
+Hunk #1 succeeded at 1 with fuzz 1.
+===> Executing: sudo chmod 644 /etc/udev/rules.d/99-com.rules
+patching file /etc/bluetooth/main.conf
+Hunk #1 succeeded at 7 with fuzz 1.
+Hunk #2 succeeded at 10 (offset -2 lines).
+Hunk #3 succeeded at 15 (offset -2 lines).
+patching file /etc/pulse/system.pa
+Hunk #1 succeeded at 22 (offset -1 lines).
+Hunk #2 succeeded at 57 (offset -1 lines).
+Done! You should reboot now
+--------------------------------------------
+===> Executing: ./airplay_install.sh
+===> Executing: apt-get -y install build-essential git autoconf automake libtool libdaemon-dev libasound2-dev libpopt-dev libconfig-dev avahi-daemon libavahi-client-dev libssl-dev libpolarssl-dev libsoxr-dev
+Reading package lists...
+Building dependency tree...
+Reading state information...
+autoconf is already the newest version (2.69-10).
+automake is already the newest version (1:1.15-6).
+avahi-daemon is already the newest version (0.6.32-2).
+build-essential is already the newest version (12.3).
+git is already the newest version (1:2.11.0-3+deb9u2).
+libavahi-client-dev is already the newest version (0.6.32-2).
+libconfig-dev is already the newest version (1.5-0.3).
+libdaemon-dev is already the newest version (0.14-6).
+libpolarssl-dev is already the newest version (1.3.9-2.1).
+libpopt-dev is already the newest version (1.16-10).
+libsoxr-dev is already the newest version (0.1.2-2).
+libssl-dev is already the newest version (1.1.0f-3).
+libtool is already the newest version (2.4.6-2).
+libasound2-dev is already the newest version (1.1.3-5+rpi3).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+===> Executing: cd //root
+===> Executing: git clone https://github.com/mikebrady/shairport-sync.git
+Exiting script due to error from: git clone https://github.com/mikebrady/shairport-sync.git
+Exiting script due to error from: ./airplay_install.sh
+--------------------------------------------
+===> Executing: ./airplay_config.sh
+===> Executing: cp shScripts/shairportstart.sh /usr/local/bin/shairportstart.sh
+===> Executing: cp shScripts/shairportend.sh /usr/local/bin/shairportend.sh
+===> Executing: chmod +x /usr/local/bin/shairportstart.sh
+===> Executing: chmod +x /usr/local/bin/shairportend.sh
+===> Executing: echo It is suggested you reboot your pi.
+It is suggested you reboot your pi.
+--------------------------------------------
+Ending at @ Sun 22 Oct 09:39:35 UTC 2017
